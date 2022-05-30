@@ -11,23 +11,22 @@ $telefone = $_POST['telefone'];
 $especialidade = $_POST['especialidade'];
 
 $objDb = new db();
-$link = $objDb -> conecta_mysql();
+$link = $objDb->conecta_mysql();
 
 $sql = "INSERT INTO usuarios(nome, endereco, secretaria, especialidade, dn, crm, telefone)
 VALUES('$nome', '$endereco', '$secretaria', '$especialidade' , '$dn', '$crm', '$telefone')";
 
-if(mysqli_query($link, $sql)){
+$errormsg = "SELECT crm FROM usuarios";
 
-  //echo '<script>alert("Médico registrado com sucesso!")</script>';
+if (mysqli_query($link, $sql)) {
 
-  header("Location: localhost:4433/cadastro/inscreva_se.php");
+  echo '<script>alert("Médico registrado com sucesso!")</script>';
+    echo '<script>javascript:window.location="inscreva_se.php"</script>';
+} else if (false) {
 
-} else{
-
-  //echo '<script>alert("Erro ao cadastrar o médico!")</script>';
-
-  header("Location: localhost:4433/cadastro/inscreva_se.php");
-
+  echo '<script>alert("Erro ao cadastrar o médico!")</script>';
+  echo '<script>javascript:window.location="inscreva_se.php"</script>';
 }
 
+// header("Location: localhost:4433/cadastro/inscreva_se.php");
 ?>
